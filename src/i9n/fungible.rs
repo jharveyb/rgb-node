@@ -164,4 +164,15 @@ impl Runtime {
             _ => Err(Error::UnexpectedResponse),
         }
     }
+
+    pub fn outpoint_assets(
+        &mut self,
+        outpoint: OutPoint,
+    ) -> Result<reply::AssetsFormat, Error> {
+        match &*self.command(Request::Assets(outpoint))? {
+            Reply::Assets(data) => Ok(reply::AssetsFormat(data.clone())),
+            Reply::Failure(failmsg) => Err(Error::Reply(failmsg.clone())),
+            _ => Err(Error::UnexpectedResponse),
+        }
+    }
 }

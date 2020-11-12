@@ -98,6 +98,10 @@ impl From<ServiceError> for Reply {
 
 #[derive(Clone, Debug, Display, StrictEncode, StrictDecode, Error)]
 #[display(Debug)]
+pub struct AssetsFormat(pub BTreeMap<ContractId, Vec<AtomicValue>>);
+
+#[derive(Clone, Debug, Display, StrictEncode, StrictDecode, Error)]
+#[display(Debug)]
 pub struct SyncFormat(pub DataFormat, pub Vec<u8>);
 
 #[derive(Clone, Debug, Display, StrictEncode, StrictDecode, Error)]
